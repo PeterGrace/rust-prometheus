@@ -81,6 +81,12 @@ impl<P: Atomic> GenericCounter<P> {
         self.v.set(P::T::from_i64(0))
     }
 
+    /// Set timestamp in ms of the counter
+    #[inline]
+    pub fn set_timestamp_ms(&self, val: i64) {
+        self.v.set_timestamp_ms(val);
+    }
+
     /// Return a [`GenericLocalCounter`] for single thread usage.
     pub fn local(&self) -> GenericLocalCounter<P> {
         GenericLocalCounter::new(self.clone())
